@@ -35,7 +35,6 @@ jobs:
           # aws s3api put-bucket-encryption --bucket terraform-state-s3backend --server-side-encryption-configuration "{\"Rules\": [{\"ApplyServerSideEncryptionByDefault\":{\"SSEAlgorithm\": \"AES256\"}}]}"
           # aws dynamodb create-table --table-name terraform-lock-table --attribute-definitions AttributeName=LockID,AttributeType=S --key-schema AttributeName=LockID,KeyType=HASH --provisioned-throughput ReadCapacityUnits=5,WriteCapacityUnits=5
           terraform init
-          # terraform force-unlock -force 61068a56-a8ea-62c3-02ca-f2e0404dbc7c
           terraform plan -no-color -lock=false
           terraform apply -auto-approve
           echo ${{ steps.plan.outputs.stdout }}
